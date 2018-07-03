@@ -17,35 +17,38 @@ import ru.sbtqa.tag.datajack.exceptions.DataException;
 public class PropertiesDataObjectAdaptor extends JsonDataObjectAdaptor implements TestDataObject {
 
     private static final Logger LOG = LoggerFactory.getLogger(PropertiesDataObjectAdaptor.class);
-    private static String extension = "properties";
 
     public PropertiesDataObjectAdaptor(String testDataFolder, String collectionName) throws DataException {
-        super(testDataFolder, collectionName);
+        super(testDataFolder, collectionName, "properties");
     }
 
-    protected PropertiesDataObjectAdaptor(String testDataFolder, BasicDBObject obj, String collectionName) {
-        super(testDataFolder, obj, collectionName);
+    public PropertiesDataObjectAdaptor(String testDataFolder, String collectionName, String extension) throws DataException {
+        super(testDataFolder, collectionName, extension);
     }
 
-    protected PropertiesDataObjectAdaptor(String testDataFolder, BasicDBObject obj, String collectionName, String way) {
-        super(testDataFolder, obj, collectionName, way);
+    protected PropertiesDataObjectAdaptor(String testDataFolder, BasicDBObject obj, String collectionName, String extension) {
+        super(testDataFolder, obj, collectionName, extension);
+    }
+
+    protected PropertiesDataObjectAdaptor(String testDataFolder, BasicDBObject obj, String collectionName, String way, String extension) {
+        super(testDataFolder, obj, collectionName, way, extension);
     }
 
     @Override
     protected <T extends JsonDataObjectAdaptor> T privateInit(String testDataFolder, BasicDBObject obj, String collectionName, String way) {
-        return (T) new PropertiesDataObjectAdaptor(testDataFolder, obj, collectionName, way);
+        return (T) new PropertiesDataObjectAdaptor(testDataFolder, obj, collectionName, way, extension);
     }
 
     @Override
     protected <T extends JsonDataObjectAdaptor> T privateInit(String testDataFolder, BasicDBObject obj, String collectionName) {
-        return (T) new PropertiesDataObjectAdaptor(testDataFolder, obj, collectionName);
+        return (T) new PropertiesDataObjectAdaptor(testDataFolder, obj, collectionName, extension);
     }
 
     @Override
     protected String readFile(String testDataFolder, String collectionName) throws CollectionNotfoundException {
         String json;
         try {
-            Properties properties = getProperties(testDataFolder + separator + collectionName + "." + getExtension());
+            Properties properties = getProperties(testDataFolder + separator + collectionName + "." + extension);
             json = new PropertiesToJsonConverter().parseToJson(properties);
 
         } catch (DataException ex) {
@@ -53,20 +56,6 @@ public class PropertiesDataObjectAdaptor extends JsonDataObjectAdaptor implement
                     collectionName, extension, testDataFolder), ex);
         }
         return json;
-    }
-
-    /**
-     * @return the extension
-     */
-    public static String getExtension() {
-        return extension == null ? "properties" : extension;
-    }
-
-    /**
-     * @param extension the extension to set
-     */
-    public void setExtension(String extension) {
-        PropertiesDataObjectAdaptor.extension = extension;
     }
 
     private Properties getProperties(String path) throws DataException {

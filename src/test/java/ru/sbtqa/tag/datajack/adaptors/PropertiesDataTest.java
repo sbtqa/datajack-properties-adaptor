@@ -47,6 +47,14 @@ public class PropertiesDataTest {
     public ExpectedException expectDataExceptions = none();
 
     @Test
+    public void differentExtensionTest() throws DataException {
+        String collectionName = "Config";
+        TestDataObject tdo = new PropertiesDataObjectAdaptor(this.propertiesDataPath, collectionName, "conf");
+        assertEquals("123qwe",
+                tdo.get("Common.password2").getValue());
+    }
+    
+    @Test
     public void getReferenceTest() throws DataException {
         String collectionName = "DataBlocks";
         TestDataObject tdo = new PropertiesDataObjectAdaptor(this.propertiesDataPath, collectionName);
