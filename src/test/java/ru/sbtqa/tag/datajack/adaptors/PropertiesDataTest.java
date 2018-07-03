@@ -53,7 +53,49 @@ public class PropertiesDataTest {
         assertEquals("123qwe",
                 tdo.get("Common.password2").getValue());
     }
-    
+
+    @Test
+    public void simpleArrayTest() throws DataException {
+        String collectionName = "Tests";
+        TestDataObject tdo = new PropertiesDataObjectAdaptor(this.propertiesDataPath, collectionName);
+        assertEquals("a",
+                tdo.get("array[0]").getValue());
+    }
+
+    @Test
+    public void arrayTest() throws DataException {
+        String collectionName = "Tests";
+        TestDataObject tdo = new PropertiesDataObjectAdaptor(this.propertiesDataPath, collectionName);
+        assertEquals("1",
+                tdo.get("array[1].b").getValue());
+    }
+
+    @Test
+    public void deepArrayTest() throws DataException {
+        String collectionName = "Tests";
+        TestDataObject tdo = new PropertiesDataObjectAdaptor(this.propertiesDataPath, collectionName);
+        assertEquals("1",
+                tdo.get("array[2].b[0].b.c").getValue());
+    }
+
+    @Test
+    public void arrayReferenceTest() throws DataException {
+        String collectionName = "Tests";
+        TestDataObject tdo = new PropertiesDataObjectAdaptor(this.propertiesDataPath, collectionName);
+        assertEquals("123qwe",
+                tdo.get("array[3].ref").getValue());
+    }
+
+    @Test
+    public void arrayGeneratorTest() throws DataException {
+        String collectionName = "Tests";
+        TestDataObject tdo = new PropertiesDataObjectAdaptor(this.propertiesDataPath, collectionName);
+        tdo.applyGenerator(SampleDataGensCallback.class);
+        String genGenOrgigin = tdo.get("Common.gen gen.gendata").getValue();
+        assertEquals(genGenOrgigin,
+                tdo.get("array[3].genRef").getValue());
+    }
+
     @Test
     public void getReferenceTest() throws DataException {
         String collectionName = "DataBlocks";
