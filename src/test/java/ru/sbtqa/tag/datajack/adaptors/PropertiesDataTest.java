@@ -108,6 +108,15 @@ public class PropertiesDataTest {
     }
 
     @Test
+    public void isReferenceTest() throws DataException {
+        String collectionName = "DataBlocks";
+        TestDataObject tdo = new PropertiesDataObjectAdaptor(this.propertiesDataPath, collectionName);
+
+        assertTrue("This isn't reference",
+                tdo.get("Common.password2").isReference());
+    }
+
+    @Test
     public void valuePathTest() throws DataException {
         String collectionName = "DataBlocks";
         TestDataObject tdo = new PropertiesDataObjectAdaptor(this.propertiesDataPath, collectionName);
@@ -228,12 +237,12 @@ public class PropertiesDataTest {
     @Test
     public void getRefAsObject() throws DataException {
         TestDataObject originalTdo = new PropertiesDataObjectAdaptor(this.propertiesDataPath, "DataBlocks");
-        originalTdo.get("Common");
+        String original = originalTdo.get("Common").toString();
 
         TestDataObject referencedTdo = new PropertiesDataObjectAdaptor(this.propertiesDataPath, "Tests");
-        referencedTdo.get("Common.ref object data").getReference();
+        String referenced = referencedTdo.get("Common.ref object data").getReference().toString();
 
-        assertEquals(originalTdo.toString(), referencedTdo.toString());
+        assertEquals(original, referenced);
     }
 
     @Test
