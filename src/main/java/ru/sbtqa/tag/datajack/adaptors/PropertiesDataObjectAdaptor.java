@@ -18,10 +18,25 @@ public class PropertiesDataObjectAdaptor extends JsonDataObjectAdaptor implement
 
     private static final Logger LOG = LoggerFactory.getLogger(PropertiesDataObjectAdaptor.class);
 
+    /**
+     * Create PropertiesDataObjectAdaptor instance
+     *
+     * @param testDataFolder path to data folder
+     * @param collectionName properties file name
+     * @throws DataException if file not found in testDataFolder
+     */
     public PropertiesDataObjectAdaptor(String testDataFolder, String collectionName) throws DataException {
         super(testDataFolder, collectionName, "properties");
     }
 
+    /**
+     * Create PropertiesDataObjectAdaptor instance
+     *
+     * @param testDataFolder path to data folder
+     * @param collectionName properties file name
+     * @param extension Custom file extension
+     * @throws DataException if file not found in testDataFolder
+     */
     public PropertiesDataObjectAdaptor(String testDataFolder, String collectionName, String extension) throws DataException {
         super(testDataFolder, collectionName, extension);
     }
