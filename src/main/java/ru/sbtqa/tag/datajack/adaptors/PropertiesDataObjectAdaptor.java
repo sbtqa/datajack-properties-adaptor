@@ -34,18 +34,18 @@ public class PropertiesDataObjectAdaptor extends JsonDataObjectAdaptor implement
      *
      * @param testDataFolder path to data folder
      * @param collectionName properties file name
-     * @param extension Custom file extension
+     * @param extension custom file extension
      * @throws DataException if file not found in testDataFolder
      */
     public PropertiesDataObjectAdaptor(String testDataFolder, String collectionName, String extension) throws DataException {
         super(testDataFolder, collectionName, extension);
     }
 
-    protected PropertiesDataObjectAdaptor(String testDataFolder, BasicDBObject obj, String collectionName, String extension) {
+    private PropertiesDataObjectAdaptor(String testDataFolder, BasicDBObject obj, String collectionName, String extension) {
         super(testDataFolder, obj, collectionName, extension);
     }
 
-    protected PropertiesDataObjectAdaptor(String testDataFolder, BasicDBObject obj, String collectionName, String way, String extension) {
+    private PropertiesDataObjectAdaptor(String testDataFolder, BasicDBObject obj, String collectionName, String way, String extension) {
         super(testDataFolder, obj, collectionName, way, extension);
     }
 
