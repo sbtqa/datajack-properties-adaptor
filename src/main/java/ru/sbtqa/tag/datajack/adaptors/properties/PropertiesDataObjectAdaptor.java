@@ -1,4 +1,4 @@
-package ru.sbtqa.tag.datajack.adaptors;
+package ru.sbtqa.tag.datajack.adaptors.properties;
 
 import com.mongodb.BasicDBObject;
 import java.io.File;
@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.jalokim.propertiestojson.util.PropertiesToJsonConverter;
 import ru.sbtqa.tag.datajack.TestDataObject;
+import ru.sbtqa.tag.datajack.adaptors.json.JsonDataObjectAdaptor;
 import ru.sbtqa.tag.datajack.exceptions.CollectionNotfoundException;
 import ru.sbtqa.tag.datajack.exceptions.DataException;
 

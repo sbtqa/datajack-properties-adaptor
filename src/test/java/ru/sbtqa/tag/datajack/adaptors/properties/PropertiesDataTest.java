@@ -1,4 +1,4 @@
-package ru.sbtqa.tag.datajack.adaptors;
+package ru.sbtqa.tag.datajack.adaptors.properties;
 
 import com.mongodb.BasicDBObject;
 import org.junit.Before;
